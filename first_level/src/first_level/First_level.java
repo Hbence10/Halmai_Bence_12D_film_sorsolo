@@ -6,16 +6,19 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class First_level {
-    
+
     public static void main(String[] args) {
+        System.out.println("Udvozlom a film sorsolo alkalmazasba! Az alkalmazas hasznalata kozben figyeljen arra, hogy ekezeteket nem tamogatja az alkalmazas!");
+        
         //Letrehozzuk a 3 kategorianak a 3 listajat, bennuk a 10-10-10 filmmel
-        ArrayList<String> schiFiMovies = new ArrayList(Arrays.asList("Star Wars 1.", "Star Wars 2.", "Star Wars 3.", "Star Wars 4.", "Star Wars 5.", "Star Wars 6.", "Star Wars 7.", "Star Wars 8.", "Star Wars 9.", "Dune", "Dune: Part Two"));
-        ArrayList<String> animatedMovies = new ArrayList(Arrays.asList("", "", "", "", "", "", "", "", "", ""));
-        ArrayList<String> horrorMovies = new ArrayList(Arrays.asList("", "", "", "", "", "", "", "", "", ""));
+        ArrayList<String> schiFiMovies = new ArrayList(Arrays.asList("Star Wars: A Baljos Arnyak.", "Star Wars: A Klonok tamadasa", "Star Wars: A Sithek bosszuja", "Star Wars: Az uj remeny", "Star Wars: A birodalom visszavag", "Star Wars: A jedi visszater", "Star Wars: Az ebredo ero", "Star Wars: Az utolso jedi", "Star Wars: A skywalker kora", "Dune", "Dune: Part Two"));
+        ArrayList<String> horrorMovies = new ArrayList(Arrays.asList("Bunosok", "28 evvel kesobb", "Hozd vissza ot", "28 nappal", "M3GAN 2.0", "28 hettel kesobb", "Vegso allomas: Vervonalak", "A capa", "Maa", "Nosferatu"));
+        ArrayList<String> animatedMovies = new ArrayList(Arrays.asList("K-pop demonvadaszok", "Elio", "Predator: gyilkosok gyilkosa", "Igy neveld a sarkanyodat", "A vad robot", "A hupikek torpikek", "Aradas", "Pokember: A Pokverzumon at", "Igy neveld a sarkanyodat 2.", "Chihiro szellemorszagban"));
 
         //Az elerheto kategoriakat tartalmazza, ennek a segitsegevel fogjuk meghatarozni, hogy a felhasznalo letezo mufajt adott meg 
         ArrayList<String> categories = new ArrayList(Arrays.asList("animation", "schi-fi", "horror"));
-
+        System.out.println("Az elerheto mufajok: animation, schi-fi, horror");
+        
         //Azt mutatja, hogy a sorsolasnak vege van-e, vagy nem
         Boolean isEnded = false;
 
@@ -76,17 +79,17 @@ public class First_level {
                     rolledMovies.add(selectedList.get(selectedIndex));
                 }
             }
-            
+
             //A kisorsolt filmek kiiratasa
             System.out.println("A kisorsolt filmek listaja: " + rolledMovies.toString().replace("[", "").replace("]", ""));
-                
+
             //Az ujrakezdesrol valo dontes
             System.out.println("Szeretne ujra sorsolni? (1 = igen, 0 = nem)");
             Scanner decision = new Scanner(System.in);
-            
+
             //Gondolkodas: 1=ujrakezdes, 0=befejezes
             isEnded = decision.nextInt() == 0;
         }
     }
-    
+
 }
