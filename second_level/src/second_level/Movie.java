@@ -3,16 +3,16 @@ package second_level;
 public class Movie {
 
     private String title;
-    private String director;
+    private String[] directors;
     private Integer lengthInMinute;
     private String category;
     private String rating;
     private Integer budget;
     private Float imdbRating;
 
-    public Movie(String title, String director, Integer lengthInMinute, String category, String rating, Integer budget, Float imdbRating) {
+    public Movie(String title, String[] directors, Integer lengthInMinute, String category, String rating, Integer budget, Float imdbRating) {
         this.title = title;
-        this.director = director;
+        this.directors = directors;
         this.lengthInMinute = lengthInMinute;
         this.category = category;
         this.rating = rating;
@@ -28,8 +28,8 @@ public class Movie {
         return category;
     }
 
-    public String getDirector() {
-        return director;
+    public String[] getDirectors() {
+        return directors;
     }
 
     public Float getImdbRating() {
@@ -56,8 +56,8 @@ public class Movie {
         this.category = category;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public void setDirectors(String[] directors) {
+        this.directors = directors;
     }
 
     public void setImdbRating(Float imdbRating) {
