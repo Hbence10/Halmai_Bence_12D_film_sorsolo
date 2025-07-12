@@ -1,6 +1,7 @@
 package second_level;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,11 +11,8 @@ import java.util.stream.Collectors;
 public class Second_level {
 
     public static void main(String[] args) {
-        ArrayList<Movie> movieList = new ArrayList<Movie>();
-        ArrayList<String> availableCategory = new ArrayList<String>();
-
-        System.out.println("Az elerheto mufajok: " + availableCategory.toString().replace("[", "").replace("]", ""));
-        System.out.println("Udvozlom a film sorsolo alkalmazasba! Az alkalmazas hasznalata kozben figyeljen arra, hogy ekezeteket nem tamogatja az alkalmazas!");
+        ArrayList<Movie> movieList = new ArrayList();
+        ArrayList<String> availableCategory = new ArrayList();
 
         try {
             File txt = new File("src//movieList.txt");
@@ -24,7 +22,7 @@ public class Second_level {
                 String[] line = reader.nextLine().split(";");
                 movieList.add(new Movie(line[0], line[1].split(","), Integer.valueOf(line[2]), line[3], line[4], Integer.valueOf(line[5]), Float.valueOf(line[6])));
             }
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.err.println("ajjaj");
         }
 
@@ -33,17 +31,17 @@ public class Second_level {
                 availableCategory.add(i.getCategory());
             }
         }
+        
+        System.out.println("Udvozlom a film sorsolo alkalmazasba! Az alkalmazas hasznalata kozben figyeljen arra, hogy ekezeteket nem tamogatja az alkalmazas!");
+        System.out.println("Az elerheto mufajok: " + availableCategory.toString().replace("[", "").replace("]", ""));
 
         Boolean isEnded = false;
 
-        //Addig fog tartani a sorsolas mig az adott sorsolas vegen a felhasznalo be nem szeretne fejezni
         while (!isEnded) {
-            //A felhasznalot megkerjuk, hogy adja meg, hogy milyen mufaju filmet/filmeket szeretne sorsoltatni
-            System.out.println("Enter your wanted category:");
+            System.out.println("\nKerem irja be, hogy milyen mufaju filmet/filmeket szeretne nezni:");
             Scanner userCategoryScanner = new Scanner(System.in);
-            String userCategory = userCategoryScanner.nextLine();
+            String userCategory = userCategoryScanner.nextLine().toLowerCase().trim();
 
-            //Ha a felhasznalo nem letezo filmet add meg, akkor addig keri a felhasznalot a mufajert mig egy letezo mufajt add meg 
             while (!availableCategory.contains(userCategory.trim().toLowerCase())) {
                 System.err.println("Nincs ilyen kategoria! Kerem adjon meg egy ujat");
                 userCategoryScanner = new Scanner(System.in);
@@ -51,34 +49,24 @@ public class Second_level {
             }
 
             String wantedCategory = userCategory;
-
-            //A felhasznalo altal valasztott lista
             List<Movie> selectedList = movieList.stream().filter(movie -> movie.getCategory().equals(wantedCategory)).toList();
 
-            //A kivant mennyiseg kerese a felhasznalotol
-            System.out.println("Hany darab filmet szeretne?");
+            System.out.println("\nHany darab filmet szeretne nezni?");
             Scanner movieAmountScanner = new Scanner(System.in);
             Integer movieAmount = movieAmountScanner.nextInt();
 
-            //Ha a felhasznalo az elertnel tobb filmet szeretne kerni vagy negativ szamot ir be akkor addig fogja kerni a mennyiseget ameddig egy kivitelezheto mennyiseget nem fog kapni
             while (movieAmount > selectedList.size() && movieAmount > 0) {
-                System.err.println("A kategória nem tartalmaz elegendő filmet. Kerem probalja meg ujbol");
+                System.err.println("A kategoria nem tartalmaz elegendo filmet. Kerem probalja meg ujbol");
                 movieAmountScanner = new Scanner(System.in);
                 movieAmount = movieAmountScanner.nextInt();
             }
 
-            //A Random osztalyt peldanyositjuk
             Random random = new Random();
 
-            //A sorsolt filmek:
             ArrayList<Movie> rolledMovies = new ArrayList();
 
-            //Addig fog kigeneralni random szamokat ameddig a sorsolt filmeknek a mennyisege elegendo nem lesz 
             while (rolledMovies.size() != movieAmount) {
-                //A Random osztaly altal kigeneralt szamok
                 int selectedIndex = random.nextInt(0, selectedList.size());
-
-                //Csak akkor fogja hozzaadni a listahoz ha az nem tartalmazza a sorsolt filmek listaja
                 if (!rolledMovies.contains(selectedList.get(selectedIndex))) {
                     rolledMovies.add(selectedList.get(selectedIndex));
                 }
@@ -86,19 +74,18 @@ public class Second_level {
 
             rolledMovies = (ArrayList<Movie>) rolledMovies.stream().sorted((movie1, movie2) -> movie1.getImdbRating().compareTo(movie2.getImdbRating())).collect(Collectors.toList());
 
-            //A kisorsolt filmek kiiratasa
-            System.out.println("A kisorsolt filmek listaja (A filmeket az IMDB ertekeles alapjan novekvo sorrendben fogja latni):");
+            System.out.println("\nA kisorsolt filmek listaja:");
             for (Movie i : rolledMovies) {
-                System.out.println(i.getTitle() + " | " + i.getImdbRating());
+                System.out.println(i);
             }
 
-            //Az ujrakezdesrol valo dontes
-            System.out.println("Szeretne ujra sorsolni? (1 = igen, 0 = nem)");
+            System.out.println("\nSzeretne ujra sorsolni? (1 = igen, 0 = nem)");
             Scanner decision = new Scanner(System.in);
 
-            //Gondolkodas: 1=ujrakezdes, 0=befejezes
             isEnded = decision.nextInt() == 0;
         }
+
+        System.out.println("Koszonjuk, hogy a mi sorsolo alkalmazasunkat hasznaltuk!!!");
     }
 
 }

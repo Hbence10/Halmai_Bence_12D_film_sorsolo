@@ -1,5 +1,7 @@
 package second_level;
 
+import java.util.Arrays;
+
 public class Movie {
 
     private String title;
@@ -74,6 +76,11 @@ public class Movie {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "\tA film cime: " + this.getTitle() + ", IMDB ertekelese: " + getImdbRating().toString() + ", hossza percben: " + getLengthInMinute();
     }
 
 }

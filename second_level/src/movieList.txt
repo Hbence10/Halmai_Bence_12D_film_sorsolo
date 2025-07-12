@@ -11,21 +11,21 @@ Dune;Denis Villeneuve;155;schi-fi;13;165000000;8.0
 Dune: Part Two;Denis Villeneuve;166;schi-fi;13;190000000;8.5
 Bunosok;Ryan Coogler;137;horror;18;90000000;7.7
 28 evvel kesobb;Danny Boyle;115;horror;18;60000000;7.1
-Hozd vissza ot;Danny Philippou, Michael Philippou;104;horror;18;15000000;7.2
+Hozd vissza ot;Danny Philippou,Michael Philippou;104;horror;18;15000000;7.2
 28 nappal kesobb;Danny Boyle;113;horror;18;8000000;7.5
 M3GAN 2.0;Gerard Johnstone;120;horror;18;36000000;6.3
 28 hettel kesobb;Juan Carlos Fresnadillo;93;horror;18;15000000;6.9
-Vegso allomas: Vervonalak;Zach Lipovsky, Adam B. Stein;110;horror;18;50000000;6.8
+Vegso allomas: Vervonalak;Zach Lipovsky,Adam B. Stein;110;horror;18;50000000;6.8
 A capa;Steven Spielberg;124;horror;18;9000000;8.1
 Maa;Vishal Furia;133;horror;18;7200000;7.2
 Nosferatu;Robert Eggers;132;horror;18;50000000;7.2
-K-pop demonvadaszok;Chris Appelhans, Maggie Kang;95;animation;8;70000000;7.8
-Elio;Adrian Molina, Domee Shi, Madeline Sharafian;98;animation;8;200000000;7.0
-Predator: gyilkosok gyilkosa;Dan Trachtenberg, Joshua Wassung;85;animation;8;65000000;7.5
-Igy neveld a sarkanyodat;Dean DeBlois, Chris Sanders;98;animation;8;150000000;8.1
+K-pop demonvadaszok;Chris Appelhans,Maggie Kang;95;animation;8;70000000;7.8
+Elio;Adrian Molina,Domee Shi,Madeline Sharafian;98;animation;8;200000000;7.0
+Predator: gyilkosok gyilkosa;Dan Trachtenberg,Joshua Wassung;85;animation;8;65000000;7.5
+Igy neveld a sarkanyodat;Dean DeBlois,Chris Sanders;98;animation;8;150000000;8.1
 A vad robot;Chris Sanders;102;animation;8;78000000;8.2
 A hupikek torpikek;Chris Miller;92;animation;8;110000000;5.4
 Aradas;Gints Zilbalodis;85;animation;8;3500000;7.9
-Pokember: A Pokverzumon at;Joaquim Dos Santos, Kemp Powers, Justin K. Thompson;140;animation;8;150000000;8.5
+Pokember: A Pokverzumon at;Joaquim Dos Santos,Kemp Powers,Justin K. Thompson;140;animation;8;150000000;8.5
 Igy neveld a sarkanyodat 2;Dean DeBlois;102;animation;8;145000000;7.8
 Chihiro szellemorszagban;Hayao Miyazaki;124;animation;8;19200000;8.6
