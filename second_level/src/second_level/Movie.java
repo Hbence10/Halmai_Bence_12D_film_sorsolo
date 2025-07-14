@@ -1,7 +1,5 @@
 package second_level;
 
-import java.util.Arrays;
-
 public class Movie {
 
     private String title;
@@ -84,3 +82,9 @@ public class Movie {
     }
 
 }
+
+/*
+                                                                                        Az OOP:
+    OOP = Objacted-Orianted Programming/Objektum Oriantalt Programozas
+    
+*/
