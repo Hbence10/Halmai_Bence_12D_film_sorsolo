@@ -47,7 +47,7 @@ public class Second_level {
                 userCategory = userCategoryScanner.nextLine();
             }
 
-            String wantedCategory = userCategory;                                                                                                                                                                                 //Egy kulon valtozoba lementjuk az erteket || indok: ez a valtozo final igy lehet hasznalni egy lambda expressionben 
+            String wantedCategory = userCategory;                                                                                                                                                                                 //Egy kulon valtozoba lementjuk az erteket || indok: ez a valtozo final igy lehet hasznalni egy lambda expressionben || filter(): az adott listan vegigmegy es a kivant feltetel szerint egy szurest fog vegrehajtani rajta
             List<Movie> selectedList = movieList.stream().filter(movie -> movie.getCategory().equals(wantedCategory)).toList();                                                          //Lambda expression: egy rovid kod reszleg amely egy parametert ker es egy erteket returnol
 
             //Bekerjuk a felhasznalotol a kivant mennyiseget
