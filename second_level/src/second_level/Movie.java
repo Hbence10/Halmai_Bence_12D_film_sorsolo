@@ -82,9 +82,3 @@ public class Movie {
     }
 
 }
-
-/*
-                                                                                        Az OOP:
-    OOP = Objacted-Orianted Programming/Objektum Oriantalt Programozas
-    
-*/
