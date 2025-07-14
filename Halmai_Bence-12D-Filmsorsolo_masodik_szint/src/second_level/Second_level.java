@@ -15,18 +15,18 @@ public class Second_level {
 
         //Fajl beolvasas || try --> hibakezeles, azert kell mert nem biztos, hogy letezik a megadott fajl, vagy lehet, hogy rossz eleresi utvonalat adunk meg 
         try {
-            File txt = new File("src//movieList.txt");                                                                                                                                                                                  //A File class segitsegevel elerjuk a movieList.txt fajlt, ez a fajl tartalmazza a filmeket es azoknak az adatait
+            File txt = new File("src//movieList.txt");                                                                                                                                                                                //A File class segitsegevel elerjuk a movieList.txt fajlt, ez a fajl tartalmazza a filmeket es azoknak az adatait
             Scanner reader = new Scanner(txt);                                                                                                                                                                                     //A txt-t egy Scanner segitsegeveel jarjuk be ||  a filmeknek az adatai egy ;-vel van elvalasztva
 
             while (reader.hasNextLine()) {
                 String[] line = reader.nextLine().split(";");                                                                                                                                                                          //A szetsplitelt sorok a txt-bol --> split(): az adott stringre meghivva a parameternel megadott karakterenkent "szetszeleteli" az adott stringet. 
-                movieList.add(new Movie(line[0], line[1].split(","), Integer.valueOf(line[2]), line[3], line[4], Integer.valueOf(line[5]), Float.valueOf(line[6])));                     //A kapott adatokkal letrehozzuk az adott Movie objectet
+                movieList.add(new Movie(line[0], line[1].split(","), Integer.valueOf(line[2]), line[3], line[4], Integer.valueOf(line[5]), Float.valueOf(line[6])));                                  //A kapott adatokkal letrehozzuk az adott Movie objectet
             }
         } catch (FileNotFoundException e) {                                                                                                                                                                                          //Amennyiben a program nem talalja meg a kivant fajlt akkor a kovetkezo uzenet fog megjelenni mint error a consolbam
             System.err.println("ajjaj");
         }
 
-        List<String> availableCategory = movieList.stream().map(movie -> movie.getCategory()).distinct().toList();                                                                              //Az elerheto kategoriakat tartalmazza
+        List<String> availableCategory = movieList.stream().map(movie -> movie.getCategory()).distinct().toList();                                                                                      //Az elerheto kategoriakat tartalmazza
         //stream() --> adatok feldolgozasara szokas hasznalni || map() --> atkasztalja a forras osszes elemet || distinct() --> csak a kulonbozo adatok maradnak meg a listaban
 
         System.out.println("Udvozlom a film sorsolo alkalmazasba! Az alkalmazas hasznalata kozben figyeljen arra, hogy ekezeteket nem tamogatja az alkalmazas!");
@@ -41,14 +41,14 @@ public class Second_level {
             Scanner userCategoryScanner = new Scanner(System.in);
             String userCategory = userCategoryScanner.nextLine().toLowerCase().trim();
 
-            while (!availableCategory.contains(userCategory.trim().toLowerCase())) {                                                                                                                            //Addig fog menni a keres, ameddig a felhasznalo egy jelenlevo mufajt meg nem fog adni
+            while (!availableCategory.contains(userCategory.trim().toLowerCase())) {                                                                                                                                     //Addig fog menni a keres, ameddig a felhasznalo egy jelenlevo mufajt meg nem fog adni
                 System.err.println("Nincs ilyen kategoria! Kerem adjon meg egy ujat");
                 userCategoryScanner = new Scanner(System.in);
                 userCategory = userCategoryScanner.nextLine();
             }
 
             String wantedCategory = userCategory;                                                                                                                                                                                 //Egy kulon valtozoba lementjuk az erteket || indok: ez a valtozo final igy lehet hasznalni egy lambda expressionben || filter(): az adott listan vegigmegy es a kivant feltetel szerint egy szurest fog vegrehajtani rajta
-            List<Movie> selectedList = movieList.stream().filter(movie -> movie.getCategory().equals(wantedCategory)).toList();                                                          //Lambda expression: egy rovid kod reszleg amely egy parametert ker es egy erteket returnol
+            List<Movie> selectedList = movieList.stream().filter(movie -> movie.getCategory().equals(wantedCategory) && movie.getImdbRating() > 4.5).toList();                      //Lambda expression: egy rovid kod reszleg amely egy parametert ker es egy erteket returnol
 
             //Bekerjuk a felhasznalotol a kivant mennyiseget
             System.out.println("\nHany darab filmet szeretne nezni?");
@@ -61,12 +61,12 @@ public class Second_level {
                 movieAmount = movieAmountScanner.nextInt();
             }
 
-            Random random = new Random();                                                                                                                                                                                           //Lehivjuk a Random class-t
-            ArrayList<Movie> rolledMovies = new ArrayList();                                                                                                                                                                    //A kisorsolt filmeket tartalmazo lista
+            Random random = new Random();                                                                                                                                                                                          //Lehivjuk a Random class-t
+            ArrayList<Movie> rolledMovies = new ArrayList();                                                                                                                                                                     //A kisorsolt filmeket tartalmazo lista
 
             while (rolledMovies.size() != movieAmount) {                                                                                                                                                                            //Addig fogja hozzaadni a filmeket a listahoz ameddig a lista merete egyenlo nem lesz a kivant mennyiseggel
-                int selectedIndex = random.nextInt(0, selectedList.size());                                                                                                                                                   //A kisorsolt "film" || a random a 0 es a kivalasztott lista merete kozott fog adni random szamot 
-                if (!rolledMovies.contains(selectedList.get(selectedIndex))) {                                                                                                                                               //Csak akkor fogja hozzaadni a filmet ha az meg nem tartalmazza a filmet
+                int selectedIndex = random.nextInt(0, selectedList.size());                                                                                                                                                    //A kisorsolt "film" || a random a 0 es a kivalasztott lista merete kozott fog adni random szamot 
+                if (!rolledMovies.contains(selectedList.get(selectedIndex))) {                                                                                                                                                   //Csak akkor fogja hozzaadni a filmet ha az meg nem tartalmazza a filme
                     rolledMovies.add(selectedList.get(selectedIndex));
                 }
             }
@@ -75,20 +75,20 @@ public class Second_level {
             rolledMovies = (ArrayList<Movie>) rolledMovies.stream().sorted((movie1, movie2) -> movie1.getImdbRating().compareTo(movie2.getImdbRating())).collect(Collectors.toList());
 
             //A kisorsolt filmek kiiratasa
-            System.out.println("\nA kisorsolt filmek listaja:");
+            System.out.println("\nA kisorsolt filmek listaja (Olyan filmeket amelyeknek az IMDB ertekelese 4.5 alatt van nem fog látni):");
             for (Movie i : rolledMovies) {
                 System.out.println(i);
             }
 
-            System.out.println("\nSzeretne ujra sorsolni? (1 = igen, 0 = nem)");                                                                                                                                             //Az ujrakezdesrol valo dontes || ha 1-est nyom akkor ujra kezdodik, ha 0-ast nyom akkor befejezodik
+            System.out.println("\nSzeretne ujra sorsolni? (1 = igen, 0 = nem)");                                                                                                                                                     //Az ujrakezdesrol valo dontes || ha 1-est nyom akkor ujra kezdodik, ha 0-ast nyom akkor befejezodik
             Scanner decision = new Scanner(System.in);
 
-            while (decision.nextInt() != 0 || decision.nextInt() != 0) {                                                                                                                                                                 //Addig fogja kerni a felhasznalotol ameddig egy letezo valaszt nem fog adni
+            while (decision.nextInt() != 0 || decision.nextInt() != 0) {                                                                                                                                                                        //Addig fogja kerni a felhasznalotol ameddig egy letezo valaszt nem fog adni
                 System.err.println("Nem letezo dontest hozott!!! Kerem probalja ujra. (1 = igen, 0 = nem)");
                 decision = new Scanner(System.in);
             }
 
-            isEnded = decision.nextInt() == 0;                                                                                                                                                                                                   //Ha a felhasznalo befejezi akkor (0-at ir) az isEnded true lesz azaz a while-ban false-kent hivatkozunk ra || ha folytatni akkorja (1-et ir) akkor az isEnded false lesz azaz a whileban truekent hivatkozunk ra
+            isEnded = decision.nextInt() == 0;                                                                                                                                                                                                     //Ha a felhasznalo befejezi akkor (0-at ir) az isEnded true lesz azaz a while-ban false-kent hivatkozunk ra || ha folytatni akkorja (1-et ir) akkor az isEnded false lesz azaz a whileban truekent hivatkozunk ra
         }
 
         System.out.println("Koszonjuk, hogy a mi sorsolo alkalmazasunkat hasznaltuk!!!");
