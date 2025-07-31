@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,10 +22,16 @@ public class GeneratorController {
         this.movieDao = movieDao;
     }
 
-    //A moviekat visszaadja a kivant mufaj es mennyiseg alapjan
+    //Egy darab mufaj altal dob vissza kivant mennyisegu filmet
     @GetMapping("/movies")
-    public List<Movie> getMovieByGenreAndAmount(@RequestParam("genre") int genre, @RequestParam("amount") int amount){
+    public List<Movie> getMovieByOneGenreAndAmount(@RequestParam("genre") int genre, @RequestParam("amount") int amount){
         return movieDao.findMovieByGenreAndAmount(genre, amount);
+    }
+
+    //Tobb darab mufaj altal dob vissza kivant mennyisegu filmet
+    @GetMapping("/movies")
+    public List<Movie> getMovieByMultipleGenreAndAmount(@RequestParam("genres") ArrayList<Integer> genres, @RequestParam("amount") int amount){
+        return new ArrayList<>();
     }
 
     //Az osszes mufaj megszerzese
