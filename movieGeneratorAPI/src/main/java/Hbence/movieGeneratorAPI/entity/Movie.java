@@ -37,6 +37,9 @@ public class Movie {
     @Column(name = "trailer_link")
     private String trailerLink;
 
+    @Column(name = "poster_path")
+    private String posterPath;
+
     @ManyToMany
     @JoinTable(
             name = "movie_genre",
@@ -48,7 +51,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, int lengthInMinute, String rating, long budget, String description, float IMDBRating, String IMDBlink, String trailerLink) {
+    public Movie(String title, int lengthInMinute, String rating, long budget, String description, float IMDBRating, String IMDBlink, String trailerLink, String posterPath) {
         this.title = title;
         this.lengthInMinute = lengthInMinute;
         this.rating = rating;
@@ -57,6 +60,7 @@ public class Movie {
         this.IMDBRating = IMDBRating;
         this.IMDBlink = IMDBlink;
         this.trailerLink = trailerLink;
+        this.posterPath = posterPath;
     }
 
     public int getId() {
@@ -129,6 +133,22 @@ public class Movie {
 
     public void setTrailerLink(String trailerLink) {
         this.trailerLink = trailerLink;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     @Override

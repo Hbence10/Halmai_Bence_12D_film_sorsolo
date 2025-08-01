@@ -1,0 +1,31 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>Select genre(s)</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      @for (genre of mainService.genres(); track $index) {
+        <button>{{genre.name}}</button>
+      }
+    </div>
+  </div>
+
+  @if(selectedGenres.length != 0){
+    <div class="row">
+      <div class="col-lg-12">
+        <input type="number" placeholder="amount" class="form-control">
+      </div>
+    </div>
+  }
+
+  <div class="row">
+    <div class="col-lg-12">
+      <button (click)="generateList()" class="btn btn-primary">Generate!</button>
+    </div>
+  </div>
+
+</div>

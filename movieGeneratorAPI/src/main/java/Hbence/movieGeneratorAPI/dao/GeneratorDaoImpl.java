@@ -20,12 +20,8 @@ public class GeneratorDaoImpl implements GeneratorDAO {
     }
 
     @Override
-    public List<Movie> findMovieByGenreAndAmount(int genreId, int amount) {
-//        TypedQuery<Genre> typedQuery = entityManager.createQuery("select g from Genre g JOIN FETCH g.movies WHERE g.id = :data", Genre.class);
-//        typedQuery.setParameter("data", genreId);
-
+    public List<Movie> getMovieByOneGenreAndAmount(int genreId, int amount) {
         Genre wantedGenre = entityManager.find(Genre.class, genreId);
-        System.out.println(wantedGenre.getMovies());
 
         return wantedGenre.getMovies();
     }

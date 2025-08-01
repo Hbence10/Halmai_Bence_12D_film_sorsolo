@@ -6,6 +6,7 @@ import Hbence.movieGeneratorAPI.entity.Movie;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class GeneratorController {
     //Egy darab mufaj altal dob vissza kivant mennyisegu filmet
     @GetMapping("/movies")
     public List<Movie> getMovieByOneGenreAndAmount(@RequestParam("genre") int genre, @RequestParam("amount") int amount){
-        return movieDao.findMovieByGenreAndAmount(genre, amount);
+        return movieDao.getMovieByOneGenreAndAmount(genre, amount);
     }
 
     //Tobb darab mufaj altal dob vissza kivant mennyisegu filmet
@@ -38,5 +39,11 @@ public class GeneratorController {
     @GetMapping("/genres")
     public List<Genre> getAllGenre(){
         return movieDao.getAllGenre();
+    }
+
+    //Film hozzaadasa --> Csak ADMIN csinalhassa
+    @PostMapping("/movies")
+    public String addMovie(@RequestParam("newMovie") Movie newMovie){
+        return "";
     }
 }
