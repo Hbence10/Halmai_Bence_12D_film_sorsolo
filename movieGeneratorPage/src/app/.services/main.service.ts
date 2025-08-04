@@ -1,11 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Genre } from './../.model/genre.model';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-  genres = signal<Genre[]>([])
-
+  private http = inject(HttpClient)
   constructor() { }
+
+  getAllGenre(): Observable<Genre[]>{
+    return this.http.get<Genre[]>("http://localhost:8080/genres")
+  }
 }

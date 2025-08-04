@@ -14,14 +14,14 @@ public class First_level {
         ArrayList<String> animatedMovies = new ArrayList(Arrays.asList("K-pop demonvadaszok", "Elio", "Predator: gyilkosok gyilkosa", "Igy neveld a sarkanyodat", "A vad robot", "A hupikek torpikek", "Aradas", "Pokember: A Pokverzumon at", "Igy neveld a sarkanyodat 2.", "Chihiro szellemorszagban"));
 
         ArrayList<String> availableCategory = new ArrayList(Arrays.asList("animation", "schi-fi", "horror"));                                                                                                                        //Az elerheto kategoriakat tartalmazza, ennek a segitsegevel fogjuk meghatarozni, hogy a felhasznalo letezo mufajt adott meg 
-        System.out.println("Udvozlom a film sorsolo alkalmazasba! Az alkalmazas hasznalata kozben figyeljen arra, hogy ekezeteket nem tamogatja az alkalmazas!");
+        System.out.println("Udvozlom a film sorsolo alkalmazasba! Az alkalmazas hasznalata kozben figyeljen arra, hogy az ekezeteket nem tamogatja az alkalmazas!");
         System.out.println("Az elerheto mufajok: " + availableCategory.toString().replace("[", "").replace("]", ""));
 
         Boolean isEnded = false;                                                                                                                                                                                                                                           //Azt mutatja, hogy a sorsolas befejezodott-e
 
         while (!isEnded) {                                                                                                                                                                                                                                                       //Addig megy a program ameddig be nem fejezodik a sorsolas
             //A felhasznalotol bekerjuk a kivant mufajt
-            System.out.println("Enter your wanted category:");
+            System.out.println("Kerem adja meg a kivant mufajt:");
             Scanner userCategoryScanner = new Scanner(System.in);
             String userCategory = userCategoryScanner.nextLine();
 

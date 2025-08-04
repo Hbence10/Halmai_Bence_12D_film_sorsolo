@@ -8,4 +8,5 @@ import java.util.List;
 public interface GeneratorDAO {
     List<Movie> getMovieByOneGenreAndAmount(int genreId, int amount);
     List<Genre> getAllGenre();
+    Movie getSingleMovie(int id);
 }

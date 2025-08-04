@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { MainService } from './../../.services/main.service';
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Genre } from '../../.model/genre.model';
+import { response } from 'express';
 
 @Component({
   selector: 'app-generator-page',
@@ -9,14 +10,25 @@ import { Router } from '@angular/router';
   templateUrl: './generator-page.component.html',
   styleUrl: './generator-page.component.css'
 })
-export class GeneratorPageComponent {
+export class GeneratorPageComponent implements OnInit{
+  destroyRef = inject(DestroyRef)
   mainService = inject(MainService)
-  router = inject(Router)
-  amount: number = 0;
-  selectedGenres: string[] = []
 
+  genres = signal<Genre[]>([])
 
-  generateList(){
-    this.router.navigate([""])
+  ngOnInit(): void {
+    const subscribe = this.mainService.getAllGenre().subscribe({
+      next: response => this.genres.set(response),
+      error: errorMsg => console.log(errorMsg)
+    })
+
+    this.destroyRef.onDestroy(() => {
+      subscribe.unsubscribe()
+      console.log("GeneratorPageComponent destroyed!!!")
+    })
+  }
+
+  selectGenre(id: number){
+
   }
 }

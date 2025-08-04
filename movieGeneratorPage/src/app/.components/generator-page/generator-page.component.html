@@ -8,24 +8,11 @@
 
   <div class="row">
     <div class="col-lg-12">
-      @for (genre of mainService.genres(); track $index) {
-        <button>{{genre.name}}</button>
+      @for (genre of genres(); track $index) {
+        <button class="btn btn-primary" (click)="selectGenre(genre.id)">{{genre.name}}</button>
       }
     </div>
   </div>
 
-  @if(selectedGenres.length != 0){
-    <div class="row">
-      <div class="col-lg-12">
-        <input type="number" placeholder="amount" class="form-control">
-      </div>
-    </div>
-  }
-
-  <div class="row">
-    <div class="col-lg-12">
-      <button (click)="generateList()" class="btn btn-primary">Generate!</button>
-    </div>
-  </div>
 
 </div>

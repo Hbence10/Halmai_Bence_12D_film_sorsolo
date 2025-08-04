@@ -5,14 +5,15 @@ import Hbence.movieGeneratorAPI.entity.Genre;
 import Hbence.movieGeneratorAPI.entity.Movie;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = {
+        "http://localhost:4200",
+        "http://127.0.0.1:5500"
+})
 @RestController
 //@RequestMapping("/movie")
 public class GeneratorController {
@@ -30,12 +31,13 @@ public class GeneratorController {
     }
 
     //Tobb darab mufaj altal dob vissza kivant mennyisegu filmet
-    @GetMapping("/movies")
-    public List<Movie> getMovieByMultipleGenreAndAmount(@RequestParam("genres") ArrayList<Integer> genres, @RequestParam("amount") int amount){
-        return new ArrayList<>();
-    }
+//    @GetMapping("/movies")
+//    public List<Movie> getMovieByMultipleGenreAndAmount(@RequestParam("genres") ArrayList<Integer> genres, @RequestParam("amount") int amount){
+//        return new ArrayList<>();
+//    }
 
     //Az osszes mufaj megszerzese
+    @CrossOrigin(allowedHeaders = "*")
     @GetMapping("/genres")
     public List<Genre> getAllGenre(){
         return movieDao.getAllGenre();

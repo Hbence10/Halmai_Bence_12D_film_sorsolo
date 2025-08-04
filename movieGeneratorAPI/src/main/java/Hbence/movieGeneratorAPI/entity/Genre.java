@@ -15,7 +15,7 @@ public class Genre {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "genres")
+    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.REMOVE})
     private List<Movie> movies;
 
     public Genre() {
@@ -41,12 +41,16 @@ public class Genre {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
+//    public List<Movie> getMovies() {
+//        return movies;
+//    }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+//    public void setMovies(List<Movie> movies) {
+//        this.movies = movies;
+//    }
+
+    public List<Movie> MoviesByRequest(){
+        return this.movies;
     }
 
     @Override
